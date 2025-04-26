@@ -1,0 +1,42 @@
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+eclipse.project.name = appName + '-core'
+
+apply plugin: 'com.google.devtools.ksp'
+
+sourceSets.main.java.srcDirs = ["src/main/kotlin", "build/generated/ksp/main/kotlin"]
+
+dependencies {
+  api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+  api "com.badlogicgames.gdx:gdx:$gdxVersion"
+  api "com.github.raeleus.TenPatch:tenpatch:$tenPatchVersion"
+  api "com.github.tommyettinger:libgdx-texturepacker:$texturePackerOnlyVersion"
+  api "com.github.tommyettinger:libgdx-utils:$utilsVersion"
+  api "io.github.libktx:ktx-app:$ktxVersion"
+  api "io.github.libktx:ktx-assets-async:$ktxVersion"
+  api "io.github.libktx:ktx-assets:$ktxVersion"
+  api "io.github.libktx:ktx-async:$ktxVersion"
+  api "io.github.libktx:ktx-collections:$ktxVersion"
+  api "io.github.libktx:ktx-freetype-async:$ktxVersion"
+  api "io.github.libktx:ktx-freetype:$ktxVersion"
+  api "io.github.libktx:ktx-graphics:$ktxVersion"
+  api "io.github.libktx:ktx-i18n:$ktxVersion"
+  api "io.github.libktx:ktx-math:$ktxVersion"
+  api "io.github.libktx:ktx-preferences:$ktxVersion"
+  api "io.github.libktx:ktx-reflect:$ktxVersion"
+  api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+  api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutinesVersion"
+  api project(':shared')
+
+  if(enableGraalNative == 'true') {
+    implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"
+  }
+
+
+//  implementation group: 'com.google.auto.service', name: 'auto-service', version: '1.1.1'
+//  ksp("com.google.auto.service:auto-service:1.1.1")
+//  ksp("dev.zacsweers.autoservice:auto-service-ksp:1.1.0")
+//  implementation("com.google.devtools.ksp:symbol-processing-api:$kspVersion")
+  api "com.rxframework:rx:$rxVersion"
+  api "com.rxframework:scene2d-rx-utils:$rxVersion"
+  ksp "com.rxframework:scene2d-rx-processor:$rxVersion"
+}
